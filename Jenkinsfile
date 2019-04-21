@@ -7,18 +7,29 @@ pipeline {
 	}
 
     stages {
-        stage('Initialize') {
+
+        stage('npm-build') {
+            agent {
+                docker {
+                    image 'node:7.4'
+                }
+            }
+        
             steps {
-                def dockerHome = tool 'myDocker'
-                env.PATH = "${dockerHome}/bin:${env.PATH}"
+                echo "Branch is ${env.BRANCH_NAME}..."
+        
+                withNPM(npmrcConfig:'my-custom-npmrc') {
+                    echo "Performing npm build..."
+                    sh 'npm install'
+                }
             }
         }
 
-       stage('NPM Setup') {
-          steps {
-             sh 'npm install'
-         }
-       }
+    //    stage('NPM Setup') {
+    //       steps {
+    //          sh 'npm install'
+    //      }
+    //    }
 
        stage('IOS Build') {
           steps {
