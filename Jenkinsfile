@@ -10,27 +10,27 @@ pipeline {
 
        stage('NPM Setup') {
           steps {
-             bash 'npm install'
+             sh 'npm install'
          }
        }
 
        stage('IOS Build') {
           steps {
-             bash 'ionic cordova build ios --release'
+             sh 'ionic cordova build ios --release'
              
           }
        }
 
        stage('Android Build') {
           steps {
-               bash 'ionic cordova build android --release'
+               sh 'ionic cordova build android --release'
                
           }
        }
 
        stage('APK Sign') {
           steps {
-            // bash 'jarsigner -storepass your_password -keystore keys/yourkey.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk nameApp'
+            // sh 'jarsigner -storepass your_password -keystore keys/yourkey.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk nameApp'
               echo "Android"
           }
        }
@@ -39,13 +39,13 @@ pipeline {
 
       stage('Stage Web Build') {
           steps {
-              bash 'npm run build --prod'
+              sh 'npm run build --prod'
           }
        }
 
          stage('Publish Firebase Web') {
           steps {
-              //bash 'firebase deploy --token "YourTokenKey"'
+              //sh 'firebase deploy --token "YourTokenKey"'
               echo 'Firebase Deploy'
           }
        }
