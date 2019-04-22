@@ -3,35 +3,12 @@ pipeline {
     agent any
 
     tools {nodejs "node"}
-    // agent {
-    //     docker {
-    //         image 'node:6-alpine' 
-    //         args '-p 3000:3000' 
-    //     }
-    // }
     
     environment {
         PATH='/usr/local/bin:/usr/bin:/bin'
 	}
 
     stages {
-
-        // stage('npm-build') {
-        //     agent {
-        //         docker {
-        //             image 'node:7.4'
-        //         }
-        //     }
-        
-        //     steps {
-        //         echo "Branch is ${env.BRANCH_NAME}..."
-        
-        //         withNPM(npmrcConfig:'my-custom-npmrc') {
-        //             echo "Performing npm build..."
-        //             sh 'npm install'
-        //         }
-        //     }
-        // }
 
        stage('NPM Setup') {
           steps {
