@@ -6,8 +6,6 @@ pipeline {
             args '-p 3000:3000'
         }
     }
-
-    tools {nodejs "node"}
     
     environment {
         PATH='/usr/local/bin:/usr/bin:/bin'
