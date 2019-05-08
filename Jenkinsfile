@@ -2,8 +2,7 @@ pipeline {
 
     agent {
         docker {
-            image 'node:10-alpine'
-            args '-p 3000:3000'
+            image 'agileek/ionic-framework'
         }
     }
     
@@ -20,9 +19,6 @@ pipeline {
        }
 
        stage('IOS Build') {
-            docker {
-                image 'agileek/ionic-framework'
-            }
           steps {
              sh 'ionic cordova build ios --release'
              
@@ -30,9 +26,6 @@ pipeline {
        }
 
        stage('Android Build') {
-            docker {
-                image 'agileek/ionic-framework'
-            }
           steps {
                sh 'ionic cordova build android --release'
                
