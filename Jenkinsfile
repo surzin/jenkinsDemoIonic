@@ -5,10 +5,6 @@ pipeline {
             image 'node:10-alpine'
             args '-p 3000:3000'
         }
-
-        docker {
-            image 'agileek/ionic-framework'
-        }
     }
     
     environment {
@@ -24,6 +20,9 @@ pipeline {
        }
 
        stage('IOS Build') {
+            docker {
+                image 'agileek/ionic-framework'
+            }
           steps {
              sh 'ionic cordova build ios --release'
              
@@ -31,6 +30,9 @@ pipeline {
        }
 
        stage('Android Build') {
+            docker {
+                image 'agileek/ionic-framework'
+            }
           steps {
                sh 'ionic cordova build android --release'
                
