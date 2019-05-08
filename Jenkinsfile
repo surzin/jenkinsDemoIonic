@@ -5,6 +5,10 @@ pipeline {
             image 'node:10-alpine'
             args '-p 3000:3000'
         }
+
+        docker {
+            image 'agileek/ionic-framework'
+        }
     }
     
     environment {
